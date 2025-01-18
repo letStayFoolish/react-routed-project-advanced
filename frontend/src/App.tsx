@@ -7,7 +7,7 @@ import NewEvent from "./pages/NewEvent.tsx";
 import EditEvent from "./pages/EditEvent.tsx";
 import RootLayout from "./layouts/RootLayout.tsx";
 import EventsRoot from "./layouts/EventsRoot.tsx";
-import { API_URL } from "./config.ts";
+import { loader as eventsLoader } from "./pages/Events.tsx";
 
 const App: React.FC = () => {
   const router = createBrowserRouter([
@@ -26,16 +26,7 @@ const App: React.FC = () => {
             {
               index: true,
               element: <Events />,
-              loader: async () => {
-                const response = await fetch(`${API_URL}/events`);
-
-                if (!response.ok) {
-                  throw new Response("Failed to fetch events", { status: 500 });
-                }
-
-                const resData = await response.json();
-                return resData?.events;
-              },
+              loader: eventsLoader,
             },
             {
               path: ":eventId",

@@ -1,7 +1,7 @@
 import classes from "./EventsList.module.css";
 import React from "react";
 import { Link } from "react-router";
-import type { Event } from "../types";
+import { type Event } from "../types";
 
 type Props = {
   events: Event[];
