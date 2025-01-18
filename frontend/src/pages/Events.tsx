@@ -30,7 +30,9 @@ export async function loader() {
     /**
      * Errors bubble up until they reaches Error element (ifg there is such).
      */
-    throw new Error("Failed to fetch events");
+    throw new Response(JSON.stringify({ message: "Could not fetch events" }), {
+      status: 500,
+    });
   }
 
   return response;
