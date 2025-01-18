@@ -8,12 +8,14 @@ import EditEvent from "./pages/EditEvent.tsx";
 import RootLayout from "./layouts/RootLayout.tsx";
 import EventsRoot from "./layouts/EventsRoot.tsx";
 import { loader as eventsLoader } from "./pages/Events.tsx";
+import ErrorPage from "./pages/ErrorPage.tsx";
 
 const App: React.FC = () => {
   const router = createBrowserRouter([
     {
       path: "/",
       element: <RootLayout />,
+      errorElement: <ErrorPage />,
       children: [
         {
           index: true,

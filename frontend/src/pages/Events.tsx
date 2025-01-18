@@ -8,7 +8,9 @@ const Events: React.FC = () => {
   /**
    * We can use useLoaderData() in the element that's assigned to a route AND in all components that might be used inside that element(children).
    */
-  const events: Event[] = useLoaderData();
+
+  const loaderData: { events: Event[] } = useLoaderData();
+  const { events } = loaderData;
 
   return <EventsList events={events} />;
 };
@@ -25,9 +27,11 @@ export async function loader() {
   const response = await fetch(`${API_URL}/events`);
 
   if (!response.ok) {
-    throw new Response("Failed to fetch events", { status: 500 });
+    /**
+     * Errors bubble up until they reaches Error element (ifg there is such).
+     */
+    throw new Error("Failed to fetch events");
   }
 
-  const resData = await response.json();
-  return resData?.events;
+  return response;
 }
