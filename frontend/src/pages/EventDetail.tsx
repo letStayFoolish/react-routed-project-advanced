@@ -1,15 +1,12 @@
 import React from "react";
-import { useParams } from "react-router";
+import { useRouteLoaderData } from "react-router";
+import EventItem from "../components/EventItem.tsx";
 
 const EventDetail: React.FC = () => {
-  const { eventId } = useParams();
+  const eventData = useRouteLoaderData("event-detail");
+  const { event } = eventData;
 
-  return (
-    <>
-      <h1>Event Detail Page</h1>
-      <h3>EVENT ID: {eventId}</h3>
-    </>
-  );
+  return <EventItem event={event} />;
 };
 
 export default EventDetail;

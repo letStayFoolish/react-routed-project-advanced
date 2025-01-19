@@ -7,8 +7,9 @@ import NewEvent from "./pages/NewEvent.tsx";
 import EditEvent from "./pages/EditEvent.tsx";
 import RootLayout from "./layouts/RootLayout.tsx";
 import EventsRoot from "./layouts/EventsRoot.tsx";
-import { loader as eventsLoader } from "./pages/Events.tsx";
+import { eventsLoader } from "./pages/Events.tsx";
 import ErrorPage from "./pages/ErrorPage.tsx";
+import SelectedEvent, { eventItemLoader } from "./layouts/SelectedEvent.tsx";
 
 const App: React.FC = () => {
   const router = createBrowserRouter([
@@ -32,15 +33,17 @@ const App: React.FC = () => {
             },
             {
               path: ":eventId",
-              element: <EventDetail />,
+              element: <SelectedEvent />,
+              id: "event-detail",
+              loader: eventItemLoader,
+              children: [
+                { index: true, element: <EventDetail /> },
+                { path: "edit", element: <EditEvent /> },
+              ],
             },
             {
               path: "new",
               element: <NewEvent />,
-            },
-            {
-              path: ":eventId/edit",
-              element: <EditEvent />,
             },
           ],
         },

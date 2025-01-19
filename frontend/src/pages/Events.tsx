@@ -23,13 +23,14 @@ export default Events;
  * Data fetching is initiated as soon as route got initiated. In this case loader function is called after we go to the route: "/events".
  * React router will wait for data to be fetched (loader to be finished) before it renders the page with that data.
  */
-export async function loader() {
+export async function eventsLoader() {
   const response = await fetch(`${API_URL}/events`);
 
   if (!response.ok) {
     /**
      * Errors bubble up until they reaches Error element (ifg there is such).
      */
+    // return json({ message: "", status: 400}) // if you are using react router v6, for v7+ next line of code.
     throw new Response(JSON.stringify({ message: "Could not fetch events" }), {
       status: 500,
     });
