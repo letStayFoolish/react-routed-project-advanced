@@ -1,5 +1,5 @@
 import classes from "./EventForm.module.css";
-import { useNavigate } from "react-router";
+import { Form, useNavigate } from "react-router";
 import React from "react";
 import { type Event } from "../types";
 
@@ -15,14 +15,14 @@ const EventForm: React.FC<Props> = ({ method, event }) => {
   }
 
   return (
-    <form className={classes.form}>
+    <Form method="post" className={classes.form}>
       <p>
         <label htmlFor="title">Title</label>
         <input
           id="title"
           type="text"
           name="title"
-          defaultValue={event.title}
+          defaultValue={event ? event.title : ""}
           required
         />
       </p>
@@ -32,7 +32,7 @@ const EventForm: React.FC<Props> = ({ method, event }) => {
           id="image"
           type="url"
           name="image"
-          defaultValue={event.image}
+          defaultValue={event ? event.image : ""}
           required
         />
       </p>
@@ -42,7 +42,7 @@ const EventForm: React.FC<Props> = ({ method, event }) => {
           id="date"
           type="date"
           name="date"
-          defaultValue={event.date}
+          defaultValue={event ? event.date : ""}
           required
         />
       </p>
@@ -52,7 +52,7 @@ const EventForm: React.FC<Props> = ({ method, event }) => {
           id="description"
           name="description"
           rows="5"
-          defaultValue={event.description}
+          defaultValue={event ? event.description : ""}
           required
         />
       </p>
@@ -62,7 +62,7 @@ const EventForm: React.FC<Props> = ({ method, event }) => {
         </button>
         <button>Save</button>
       </div>
-    </form>
+    </Form>
   );
 };
 

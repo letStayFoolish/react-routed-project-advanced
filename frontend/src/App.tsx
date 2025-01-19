@@ -3,7 +3,7 @@ import { createBrowserRouter, RouterProvider } from "react-router";
 import Home from "./pages/Home.tsx";
 import Events from "./pages/Events.tsx";
 import EventDetail from "./pages/EventDetail.tsx";
-import NewEvent from "./pages/NewEvent.tsx";
+import NewEvent, { newEventAction } from "./pages/NewEvent.tsx";
 import EditEvent from "./pages/EditEvent.tsx";
 import RootLayout from "./layouts/RootLayout.tsx";
 import EventsRoot from "./layouts/EventsRoot.tsx";
@@ -44,6 +44,7 @@ const App: React.FC = () => {
             {
               path: "new",
               element: <NewEvent />,
+              action: newEventAction,
             },
           ],
         },
