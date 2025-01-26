@@ -6,7 +6,7 @@ const EditEvent: React.FC = () => {
   const eventData = useRouteLoaderData("event-detail");
   const { event } = eventData;
 
-  return <EventForm event={event} />;
+  return <EventForm method="PATCH" event={event} />;
 };
 
 export default EditEvent;
