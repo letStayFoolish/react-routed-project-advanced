@@ -2,7 +2,7 @@ import React from "react";
 import { createBrowserRouter, RouterProvider } from "react-router";
 import Home from "./pages/Home.tsx";
 import Events from "./pages/Events.tsx";
-import EventDetail from "./pages/EventDetail.tsx";
+import EventDetail, { deleteItemAction } from "./pages/EventDetail.tsx";
 import NewEvent, { newEventAction } from "./pages/NewEvent.tsx";
 import EditEvent from "./pages/EditEvent.tsx";
 import RootLayout from "./layouts/RootLayout.tsx";
@@ -36,8 +36,13 @@ const App: React.FC = () => {
               element: <SelectedEvent />,
               id: "event-detail",
               loader: eventItemLoader,
+
               children: [
-                { index: true, element: <EventDetail /> },
+                {
+                  index: true,
+                  element: <EventDetail />,
+                  action: deleteItemAction,
+                },
                 { path: "edit", element: <EditEvent /> },
               ],
             },

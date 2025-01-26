@@ -1,5 +1,5 @@
 import React from "react";
-import { Outlet } from "react-router";
+import { Outlet, redirect } from "react-router";
 import { API_URL } from "../config.ts";
 
 const SelectedEvent: React.FC = () => {
